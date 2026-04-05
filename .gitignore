@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+ENV/
+
+# Ortam ve sırlar
+.env
+.env.*
+!.env.example
+
+# Firebase web istemci yapılandırması (gerçek anahtarlar yalnızca yerelde)
+features/frontend/js/firebase-config.js
+features/frontend/js/firebase-config.local.js
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE (isteğe bağlı — ekip .cursor kurallarını repoda tutuyorsa bu satırı kaldırın)
+# .cursor/

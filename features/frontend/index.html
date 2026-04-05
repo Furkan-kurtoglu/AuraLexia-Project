@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraLexia</title>
+    <script src="js/firebase-config.defaults.js"></script>
+    <script src="js/firebase-config.local.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app" id="appRoot">
+      <div class="app-shell">
+        <header class="topbar">
+          <span class="logo">AuraLexia</span>
+          <span class="step-indicator" id="stepIndicator" aria-live="polite"></span>
+        </header>
+
+        <main class="main">
+          <section
+            id="view-landing"
+            class="view view--active view--landing"
+            aria-labelledby="landing-title"
+          >
+            <div class="landing-page">
+              <header class="landing-hero">
+                <h1 id="landing-title" class="landing-hero__title">AuraLexia</h1>
+                <p class="landing-hero__slogan">
+                  Disleksi Farkındalığı ve Okuma Analizi
+                </p>
+                <p class="landing-hero__lede">
+                  Yapay zeka destekli göz takibi ile okuma sürecine dair hızlı, erişilebilir
+                  bir ön değerlendirme.
+                </p>
+                <span class="landing-hero__scroll" aria-hidden="true">Aşağı kaydır</span>
+              </header>
+
+              <section class="landing-panel landing-panel--problem" aria-labelledby="pitch-problem">
+                <div class="landing-panel__icon" aria-hidden="true">
+                  <svg class="landing-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+                    <path d="M24 14v12M24 32h.02" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h2 id="pitch-problem" class="landing-panel__title">Problem</h2>
+                <p class="landing-panel__text">
+                  Disleksi teşhisi geç kalıyor, maliyetli ve erişimi zor.
+                </p>
+                <p class="landing-panel__stat">
+                  Her beş çocuktan biri okuma güçlüğü yaşıyor; erken farkındalık okul ve yaşam
+                  başarısını doğrudan etkiler.
+                </p>
+              </section>
+
+              <section class="landing-panel landing-panel--solution" aria-labelledby="pitch-solution">
+                <div class="landing-panel__icon landing-panel__icon--accent" aria-hidden="true">
+                  <svg class="landing-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 28c6-12 22-12 28 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="17" cy="22" r="3" fill="currentColor"/>
+                    <circle cx="31" cy="22" r="3" fill="currentColor"/>
+                    <path d="M18 34h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h2 id="pitch-solution" class="landing-panel__title">Çözüm</h2>
+                <p class="landing-panel__text">
+                  Yapay zeka destekli göz takibi ile hızlı, erişilebilir ve önleyici analiz.
+                </p>
+                <p class="landing-panel__sub">
+                  AuraLexia, göz hareketlerindeki mikro sapmaları yakalayarak risk analizi yapar;
+                  veli ve öğretmenlere RAM odaklı yönlendirme özeti sunar.
+                </p>
+              </section>
+
+              <section class="landing-panel landing-panel--how" aria-labelledby="pitch-how">
+                <div class="landing-panel__icon" aria-hidden="true">
+                  <svg class="landing-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="2"/>
+                    <path d="M14 18h20M14 24h14M14 30h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h2 id="pitch-how" class="landing-panel__title">Nasıl çalışır?</h2>
+                <ol class="pitch-steps">
+                  <li class="pitch-steps__item">
+                    <span class="pitch-steps__num">1</span>
+                    <span class="pitch-steps__body"><strong>Kalibrasyon</strong> — Kamera ile göz izleme ayarı</span>
+                  </li>
+                  <li class="pitch-steps__item">
+                    <span class="pitch-steps__num">2</span>
+                    <span class="pitch-steps__body"><strong>Okuma</strong> — Ekrandaki metin sesli veya sessiz okunur</span>
+                  </li>
+                  <li class="pitch-steps__item">
+                    <span class="pitch-steps__num">3</span>
+                    <span class="pitch-steps__body"><strong>AI analizi</strong> — Bakış deseni özetlenir</span>
+                  </li>
+                  <li class="pitch-steps__item">
+                    <span class="pitch-steps__num">4</span>
+                    <span class="pitch-steps__body"><strong>RAM yönlendirmesi</strong> — Rehberlik önerileri</span>
+                  </li>
+                </ol>
+              </section>
+
+              <div
+                id="mobileWarning"
+                class="banner banner--warn landing-banner"
+                role="alert"
+                hidden
+              >
+                Lütfen daha doğru bir analiz için uygulamayı bilgisayarınızdan açın.
+              </div>
+
+              <div class="landing-cta">
+                <button type="button" class="btn btn--primary btn--landing-cta" id="btnToRegister">
+                  Hemen Deneyimle
+                </button>
+                <p class="landing-cta__note">
+                  Devam ederek kısa öğrenci kaydı ve test akışına geçersiniz.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section
+            id="view-register"
+            class="view"
+            aria-labelledby="register-title"
+            hidden
+          >
+            <h1 id="register-title" class="title">Öğrenci bilgileri</h1>
+            <p class="lead lead--compact">
+              Okumayı yapacak çocuğun adını ve sınıfını veya yaşını girin.
+            </p>
+            <div
+              id="mobileWarningRegister"
+              class="banner banner--warn"
+              role="alert"
+              hidden
+            >
+              Lütfen daha doğru bir analiz için uygulamayı bilgisayarınızdan açın.
+            </div>
+            <form id="studentForm" class="form" novalidate>
+              <label class="field">
+                <span class="field__label">Öğrenci adı</span>
+                <input
+                  type="text"
+                  name="studentName"
+                  id="studentName"
+                  autocomplete="name"
+                  required
+                  maxlength="120"
+                  placeholder="Örn. Ayşe Yılmaz"
+                />
+              </label>
+              <label class="field">
+                <span class="field__label">Sınıf veya yaş</span>
+                <input
+                  type="text"
+                  name="gradeOrAge"
+                  id="gradeOrAge"
+                  required
+                  maxlength="40"
+                  placeholder="Örn. 3. sınıf veya 9 yaş"
+                />
+              </label>
+              <p class="form-error" id="formError" role="alert" hidden></p>
+              <div class="actions actions--register">
+                <button type="button" class="btn btn--ghost" id="btnBackToLanding">
+                  Geri
+                </button>
+                <button type="submit" class="btn btn--primary" id="btnStartTest">
+                  Kayıt ol ve kalibre et
+                </button>
+              </div>
+            </form>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div
+      id="mlLoadingOverlay"
+      class="ml-loading"
+      hidden
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <div class="ml-loading__card ml-loading__card--shell">
+        <div class="ml-loading__spinner" aria-hidden="true"></div>
+        <p class="ml-loading__text">Yapay Zeka Motoru Hazırlanıyor...</p>
+      </div>
+    </div>
+
+    <div
+      id="calibrationOverlay"
+      class="calibration-overlay"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="calibrationTitle"
+    >
+      <div class="calibration-overlay__inner calibration-shell-card">
+        <h2 id="calibrationTitle" class="calibration-overlay__title">Kalibrasyon</h2>
+        <p class="calibration-overlay__text" id="calibrationInstruction"></p>
+        <p
+          class="calibration-overlay__progress"
+          id="calibrationProgress"
+          aria-live="polite"
+        ></p>
+        <p class="calibration-overlay__error" id="cameraError" role="alert" hidden></p>
+        <button
+          type="button"
+          class="calibration-target"
+          id="calibrationTarget"
+          tabindex="0"
+          aria-describedby="calibrationInstruction"
+        ></button>
+      </div>
+    </div>
+
+    <div
+      id="readingOverlay"
+      class="reading-overlay"
+      hidden
+      role="document"
+      aria-label="Okuma görevi"
+    >
+      <div class="reading-overlay__inner reading-shell-card">
+        <div
+          id="readingStepPassage"
+          class="reading-overlay__step reading-step-passage"
+        >
+          <p id="readingPassage" class="reading-passage" tabindex="0">
+            Ali topu at. Ayşe ip atla. Kedi süt içti. Köpek havladı.
+          </p>
+          <div class="reading-step-passage__actions">
+            <button
+              type="button"
+              class="btn btn--primary btn--reading-done"
+              id="btnReadingDone"
+            >
+              Okumayı Bitirdim
+            </button>
+          </div>
+        </div>
+        <div
+          id="readingStepPost"
+          class="reading-overlay__step reading-step-post"
+          hidden
+          aria-live="polite"
+          aria-busy="false"
+        >
+          <div id="analyzeProgressBlock" class="analyze-progress">
+            <div
+              id="analyzeSpinner"
+              class="analyze-spinner"
+              hidden
+              aria-hidden="true"
+            ></div>
+            <p class="reading-post-message" id="readingPostMessage">
+              Veriler Analiz Ediliyor...
+            </p>
+          </div>
+          <div id="analyzeResultCard" class="analyze-result-card" hidden>
+            <div class="analyze-result-card__badge" id="analyzeRiskBadge"></div>
+            <p class="analyze-result-card__summary" id="analyzeSummaryText"></p>
+            <div class="analyze-chart-block">
+              <p class="analyze-chart-block__title">Bakış sapması (zaman)</p>
+              <svg
+                id="analyzeChartSvg"
+                class="analyze-chart"
+                viewBox="0 0 320 120"
+                role="img"
+                aria-label="Bakış sapması grafiği"
+              ></svg>
+            </div>
+            <div class="analyze-ram">
+              <h3 class="analyze-ram__title">Rehberlik / RAM yönlendirmesi</h3>
+              <p class="analyze-ram__text" id="analyzeRamText"></p>
+            </div>
+            <dl class="analyze-result-card__metrics" id="analyzeMetricsDl"></dl>
+            <button type="button" class="btn btn--ghost btn--download" id="btnDownloadReport">
+              Raporu indir (JSON)
+            </button>
+            <p id="firebaseSyncNote" class="analyze-firebase-note" hidden></p>
+            <p class="analyze-result-card__foot" id="analyzeBrainLine">
+              Beyin bağlandı, test edebiliriz!
+            </p>
+          </div>
+          <p class="analyze-error" id="analyzeError" role="alert" hidden></p>
+          <div
+            class="reading-post-actions reading-post-actions-bar actions"
+            id="readingPostActions"
+          >
+            <button type="button" class="btn btn--ghost btn--post-action" id="btnRecalibrate">
+              Kalibrasyonu tekrarla
+            </button>
+            <button type="button" class="btn btn--ghost btn--post-action" id="btnNewSessionTracking">
+              Yeni oturum
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-sync.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webgazer@3.5.3/dist/webgazer.min.js"></script>
+    <script src="js/gaze-buffer.js" defer></script>
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
