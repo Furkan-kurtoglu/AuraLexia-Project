@@ -5,7 +5,6 @@
 **AuraLexia**, standart web kamerasıyla okuma sırasındaki göz hareketlerini yapay zeka ile analiz ederek, disleksi gibi gizli öğrenme güçlüklerini tespit eden erişilebilir ve maliyetsiz bir erken uyarı aracıdır.
 
 ---
-	Bağlantı
 Yayın (Netlify)	https://lucky-semolina-ab7175.netlify.app/
 
 ## 🚨 1. Problemler (Neden Buradayız?)
